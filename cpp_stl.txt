@@ -1,0 +1,616 @@
+[C++ STL list]
+
+- iterator(반복자)
+begin(): beginning iterator를 반환
+end(): end iterator를 반환
+
+- 추가 및 삭제
+push_front(element): 리스트 제일 앞에 원소 추가
+pop_front(): 리스트 제일 앞에 원소 삭제
+push_back(element): 리스트 제일 뒤에 원소 추가
+pop_back(): 리스트 제일 뒤에 원소 삭제
+insert(iterator, element): iterator가 가리키는 부분 “앞”에 원소를 추가
+erase(iterator): iterator가 가리키는 부분에 원소를 삭제
+
+- 조회
+*iterator: iterator가 가리키는 원소에 접근
+front(): 첫번째 원소를 반환
+back(): 마지막 원소를 반환
+
+- 기타
+empty(): 리스트가 비어있으면 true 아니면 false를 반환
+size(): 리스트 원소들의 수를 반환
+
+#include <iostream>
+#include <list>
+
+using namespace std;
+
+int main(){
+
+	list<int> l;
+
+
+	// push_back
+	l.push_back(5);
+	l.push_back(6);
+	l.push_back(7);
+	l.push_back(8);
+	l.push_back(9);
+	l.push_back(10);
+
+
+	// pop_back
+	l.pop_back();
+
+
+	// push_front
+	l.push_front(4);
+	l.push_front(3);
+	l.push_front(1);
+	l.push_front(0);
+
+
+	// pop_front
+	l.pop_front();
+
+
+	// back and front
+	cout << "list front value: " << l.front() << '\n';
+	cout << "list end value: " << l.back() << '\n';
+
+
+	// size
+	cout << "list size: " << l.size() << '\n';
+
+
+	// empty
+	cout << "Is it empty?: " << (l.empty() ? "Yes" : "No") << '\n';
+
+
+	// iterator
+	list<int>::iterator begin_iter = l.begin(); // auto begin_iter = l.begin()도 가능
+	list<int>::iterator end_iter = l.end(); // auto end_iter = l.end()도 가능
+
+
+	// insert
+	begin_iter++; // 2번째를 가리키는 iterator
+	l.insert(begin_iter, 2);
+
+
+	// erase
+	end_iter--; // 마지막 원소를 가리키는 iterator
+	l.erase(end_iter);
+
+
+	// *iterator: 원소 접근
+	cout << "list "<< distance(l.begin(), begin_iter)+ 1 << " element: " << *begin_iter << '\n';
+
+	return 0;
+
+}
+
+[C++ STL vector]
+
+- iterator(반복자)
+begin(): beginning iterator를 반환
+end(): end iterator를 반환
+
+- 추가 및 삭제
+push_back(element): 벡터 제일 뒤에 원소 추가
+pop_back(): 벡터 제일 뒤에 원소 삭제
+
+- 조회
+[i]: i번째 원소를 반환
+at(i): i번째 원소를 반환
+front(): 첫번째 원소를 반환
+back(): 마지막 원소를 반환
+
+- 기타
+empty(): 벡터가 비어있으면 true 아니면 false를 반환
+size(): 벡터 원소들의 수를 반환
+
+- 배열과의 차이
+동적으로 원소를 추가할 수 있으며 크기가 자동으로 늘어난다.
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main(){
+
+	vector<int> v;
+
+
+	// push_back
+	// 1-2-3-4-5
+	v.push_back(1);
+	v.push_back(2);
+	v.push_back(3);
+	v.push_back(4);
+	v.push_back(5);
+
+
+	// pop_back
+	v.pop_back();
+
+
+	// back and front
+	cout << "vector front value: " << v.front() << '\n';
+	cout << "vector end value: " << v.back() << '\n';
+
+
+	// [i] and at(i)
+	cout << "vector opeartor[]: " << v[3] << '\n';
+	cout << "vector at: " << v.at(3) << '\n';
+
+
+	// size
+	cout << "vector size: " << v.size() << '\n';
+
+
+	// empty
+	cout << "Is it empty?: " << (v.empty() ? "Yes" : "No") << '\n';
+
+
+	// iterator
+	vector<int>::iterator begin_iter = v.begin(); // auto begin_iter = v.begin()도 가능
+	vector<int>::iterator end_iter = v.end(); // auto end_iter = v.end()도 가능
+
+	// get value by iterator
+	cout << "vector begin value: " << *begin_iter << '\n';
+
+	// for statement iteration using iterator
+	for(vector<int>::iterator iter = v.begin(); iter != v.end(); iter++){
+		cout << *iter << ' ';
+	}
+	cout << endl;
+
+	return 0;
+
+}
+
+[C++ STL queue]
+
+- 추가 및 삭제
+push(element): 큐에 원소를 추가(뒤에)
+pop(): 큐에 있는 원소를 삭제(앞에)
+
+- 조회
+front(): 큐 제일 앞에 있는 원소를 반환
+back(): 큐 제일 뒤에 있는 원소를 반환
+
+- 기타
+empty(): 큐가 비어있으면 true 아니면 false를 반환
+size(): 큐 사이즈를 반환
+
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+int main(){
+
+	// 큐 생성
+	queue<int> q;
+
+
+	// push
+	q.push(1);
+	q.push(2);
+	q.push(3);
+	q.push(4);
+	q.push(5);
+	q.push(6);
+
+
+	// pop
+	q.pop();
+	q.pop();
+	q.pop();
+
+
+	// front
+	cout << "front element: " << q.front() << '\n';
+
+
+	// back
+	cout << "back element: " << q.back() << '\n';
+
+
+	// size
+	cout << "queue size: " << q.size() << '\n';
+
+
+	// empty
+	cout << "Is it empty?: " << (q.empty() ? "Yes" : "No") << '\n';
+
+	return 0;
+
+}
+
+[C++ STL stack]
+
+- 추가 및 삭제
+push(element): top에 원소를 추가
+pop(): top에 있는 원소를 삭제
+
+- 조회
+top(): top(스택의 처음이 아닌 가장 끝)에 있는 원소를 반환
+
+- 기타
+empty(): 스택이 비어있으면 true 아니면 false를 반환
+size(): 스택 사이즈를 반환
+
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+int main(){
+
+	// 스택 생성
+	stack<int> s;
+
+
+	// push
+	s.push(3);
+	s.push(2);
+	s.push(1);
+
+
+	// top
+	cout << "top element: " << s.top() << '\n';
+
+
+	// pop
+	s.pop(); // 1이 삭제
+	s.pop(); // 2가 삭제
+
+
+	// size
+	cout << "stack size: " << s.size() << '\n';
+
+
+	// empty
+	cout << "Is it empty?: " << (s.empty() ? "Yes" : "No") << '\n';
+
+	return 0;
+
+}
+
+[C++ STL set]
+
+- 기본형태
+set<T>: 원하는 자료형 및 클래스 T를 통해 생성
+iterator(반복자)
+begin(): beginning iterator를 반환
+end(): end iterator를 반환
+
+- 추가 및 삭제
+insert(element): 세트에 element를 추가
+erase(element): 세트에서 해당하는 element를 삭제
+clear(): 세트에 있는 모든 원소 삭제
+
+- 조회
+find(element): element에 해당하는 iterator를 반환
+count(element): element에 해당하는 개수를 반환
+
+- 기타
+empty(): 비어있으면 true 아니면 false를 반환
+size(): 세트에 포함되어 있는 원소들의 수를 반환
+
+- 특징
+중복을 허용하지 않는다.
+중복을 허용하려면 multiset을 사용해야한다.
+
+#include <iostream>
+#include <set>
+#include <string>
+
+using namespace std;
+
+int main(){
+
+	// set
+	set<string> s;
+
+
+	// insert(element)
+	s.insert("abc");
+	s.insert("def");
+	s.insert("ghi");
+	s.insert("jkl");
+
+
+	// erase(element)
+	s.erase("jkl");
+
+
+	// empty(), size()
+	if(!s.empty()) cout << "s size: " << s.size() << '\n';
+
+
+	// find(element)
+	cout << *s.find("abc") << '\n';
+	cout << *s.find("def") << '\n';
+
+
+	// count(element)
+	cout << "abc count: " << s.count("abc") << '\n';
+
+
+	// begin(), end()
+	cout << "traverse" << '\n';
+	for(auto it = s.begin(); it != s.end(); it++){
+		cout << "value: " << *it << '\n';
+	}
+
+	return 0;
+
+}
+
+[C++ STL map]
+
+- 기본형태
+map<key,value>: key와 value를 pair 형태로 선언합니다.
+iterator(반복자)
+begin(): beginning iterator를 반환
+end(): end iterator를 반환
+
+- 추가 및 삭제
+insert( make_pair(key,value) ): 맵에 원소를 pair 형태로 추가
+erase(key): 맵에서 key(키값)에 해당하는 원소 삭제
+clear(): 맵의 원소들 모두 삭제
+
+- 조회
+find(key): key(키값)에 해당하는 iterator를 반환
+count(key): key(키값)에 해당하는 원소들(value들)의 개수를 반환
+
+- 기타
+empty(): 맵이 비어있으면 true 아니면 false를 반환
+size(): 맵 원소들의 수를 반환
+
+#include <iostream>
+#include <map>
+#include <string>
+
+using namespace std;
+
+int main(){
+
+	// map
+	// <string, int> => <key, value>
+	map< string, int > m;
+
+
+	// insert(key,value)
+	m.insert(make_pair("a", 1));
+	m.insert(make_pair("b", 2));
+	m.insert(make_pair("c", 3));
+	m.insert(make_pair("d", 4));
+	m.insert(make_pair("e", 5));
+	m["f"] = 6; // also possible
+
+
+	// erase(key)
+	m.erase("d");
+	m.erase("e");
+	m.erase(m.find("f")); // also possible
+
+
+	// empty(), size()
+	if(!m.empty()) cout << "m size: " << m.size() << '\n';
+
+
+	// find(key)
+	cout << "a: " << m.find("a")->second << '\n';
+	cout << "b: " << m.find("b")->second << '\n';
+
+
+	// count(key)
+	cout << "a count: " << m.count("a") << '\n';
+	cout << "b count: " << m.count("b") << '\n';
+
+
+	// begin(), end()
+	cout << "traverse" << '\n';
+    // map< string, int >::iterator it; also possible
+	for(auto it = m.begin(); it != m.end(); it++){
+		cout << "key: " << it->first << " " << "value: " << it->second << '\n';
+	}
+
+	return 0;
+
+}
+
+[C++ STL priority_queue]
+
+- 기본형태
+priority_queue<T, Container, Compare>: 원하는 자료형 및 클래스 T를 통해 생성. 여기서 Container는 vector와 같은 컨테이너이며 Compare는 비교함수 클래스이다.
+
+- 추가 및 삭제
+push(element): 우선순위 큐에 원소 추가
+pop(): 우선순위 큐에서 top의 원소를 삭제
+
+- 조회
+top(): top에 있는 원소를 반환
+
+- 기타
+empty(): 비어있으면 true 아니면 false를 반환
+size(): 우선순위 큐에 포함되어 있는 원소들의 수를 반환
+
+
+// Max Heap
+#include <iostream>
+#include <functional>
+#include <queue>
+
+using namespace std;
+
+int main(){
+
+	// priority_queue
+	priority_queue< int, vector<int>, less<int> > pq;
+	// or priority_queue<int> pq;
+
+
+	// push(element)
+	pq.push(5);
+	pq.push(2);
+	pq.push(8);
+	pq.push(9);
+	pq.push(1);
+	pq.push(14);
+
+
+	// pop()
+	pq.pop();
+	pq.pop();
+
+
+	// top();
+	cout << "pq top: " << pq.top() << '\n';
+
+
+	// empty(), size()
+	if(!pq.empty()) cout << "pq size: " << pq.size() << '\n';
+
+
+	// pop all
+	while(!pq.empty()){
+		cout << pq.top() << " ";
+		pq.pop();
+	}
+
+	cout << '\n';
+
+	return 0;
+
+}
+
+// Min Heap
+#include <iostream>
+#include <functional>
+#include <queue>
+
+using namespace std;
+
+int main(){
+
+	// priority_queue
+	priority_queue< int, vector<int>, greater<int> > pq;
+
+
+	// push(element)
+	pq.push(5);
+	pq.push(2);
+	pq.push(8);
+	pq.push(9);
+	pq.push(1);
+	pq.push(14);
+
+
+	// pop()
+	pq.pop();
+	pq.pop();
+
+
+	// top();
+	cout << "pq top: " << pq.top() << '\n';
+
+
+	// empty(), size()
+	if(!pq.empty()) cout << "pq size: " << pq.size() << '\n';
+
+
+	// pop all
+	while(!pq.empty()){
+		cout << pq.top() << " ";
+		pq.pop();
+	}
+
+	cout << '\n';
+
+	return 0;
+
+}
+
+
+// 만든 구조체와 비교함수 이용
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+struct Custom{
+
+	int x;
+	int y;
+	int value;
+	Custom(int value): x(0), y(0), value(value) {
+    }
+};
+
+
+// 오름차순 정렬
+struct cmp{
+    bool operator()(Custom t, Custom u){
+        return t.value > u.value;
+    }
+};
+
+
+// 아래와 같이 class로도 작성이 가능합니다.
+class CompareFunctionObject
+{
+public:
+	int operator()(Custom t, Custom u){
+		return t.value > u.value;
+	}
+};
+
+
+int main(){
+
+	// priority_queue
+	priority_queue< Custom, vector<Custom>,  cmp > pq;
+
+	// 아래는 class 사용시 예제
+	// priority_queue< Custom, vector<Custom>,  CompareFunctionObject > pq;
+
+
+	// push(element)
+	pq.push(Custom(5));
+	pq.push(Custom(2));
+	pq.push(Custom(8));
+	pq.push(Custom(9));
+	pq.push(Custom(1));
+	pq.push(Custom(14));
+
+
+	// pop()
+	pq.pop();
+	pq.pop();
+
+
+	// top();
+	cout << "pq top: " << pq.top().value << '\n';
+
+
+	// empty(), size()
+	if(!pq.empty()) cout << "pq size: " << pq.size() << '\n';
+
+
+	// pop all
+	while(!pq.empty()){
+		cout << pq.top().value << " ";
+		pq.pop();
+	}
+
+	cout << '\n';
+
+	return 0;
+
+}
